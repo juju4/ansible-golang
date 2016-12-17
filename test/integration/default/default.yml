@@ -5,5 +5,5 @@
 #  vars:
 #    - a:
   roles:
-    - golang
+    - juju4.golang
 
