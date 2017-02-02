@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/juju4/ansible-golang.svg?branch=master)](https://travis-ci.org/juju4/ansible-golang)
+[![Build Status - Master](https://travis-ci.org/juju4/ansible-golang.svg?branch=master)](https://travis-ci.org/juju4/ansible-golang)
+[![Build Status - Devel](https://travis-ci.org/juju4/ansible-golang.svg?branch=devel)](https://travis-ci.org/juju4/ansible-golang/branches)
 # Go language setup ansible role
 
 Ansible role to install go compiler from Google Archive
