@@ -11,10 +11,11 @@ https://golang.org/
 It was tested on the following versions:
  * 1.9
  * 2.0
+ * 2.5
 
 ### Operating systems
 
-Tested with vagrant on Ubuntu 14.04, Kitchen test with trusty and centos7
+Tested on Ubuntu 14.04, 16.04, 18.04 centos7
 
 ## Example Playbook
 
@@ -24,7 +25,7 @@ For example
 ```
 - host: all
   roles:
-    - golang
+    - juju4.golang
 ```
 
 ## Variables
@@ -39,14 +40,14 @@ Default kitchen config (.kitchen.yml) is lxd-based, while (.kitchen.vagrant.yml)
 Once you ensured all necessary roles are present, You can test with:
 ```
 $ gem install kitchen-ansible kitchen-lxd_cli kitchen-sync kitchen-vagrant
-$ cd /path/to/roles/golang
+$ cd /path/to/roles/juju4.golang
 $ kitchen verify
 $ kitchen login
 $ KITCHEN_YAML=".kitchen.vagrant.yml" kitchen verify
 ```
 or
 ```
-$ cd /path/to/roles/golang/test/vagrant
+$ cd /path/to/roles/juju4.golang/test/vagrant
 $ vagrant up
 $ vagrant ssh
 ```
