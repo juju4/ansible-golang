@@ -8,4 +8,3 @@
 #  when: ansible_distribution == 'Ubuntu'
 
 - include: golang.yml
-
