@@ -1,5 +1,5 @@
 ---
 
-golang_gover: 1.13.7
-golang_hash_linux_386: 'sha256:93e82683f32d9fe7fda9b686415aeee599a92c4e450b69519bb53e1d62144a85'
-golang_hash_linux_amd64: 'sha256:b3dd4bd781a0271b33168e627f7f43886b4c5d1c794a4015abf34e99c6526ca3'
+golang_gover: 1.14.6
+golang_hash_linux_386: 'sha256:17b2c4e26bd3a82a0a44499ae2d36e3f2155d0fe2f6b9a14ac6b7c5afac3ca6a'
+golang_hash_linux_amd64: 'sha256:5c566ddc2e0bcfc25c26a5dc44a440fcc0177f7350c1f01952b34d5989a0d287'
