@@ -30,11 +30,19 @@
   stat: path=/usr/local/go
   register: godir
 - name: Extract go archive to /usr/local
-  unarchive: "src={{ go_dest }} dest=/usr/local/ copy=no"
+  unarchive:
+    src: "{{ go_dest }}"
+    dest: /usr/local/
+    mode: '0755'
+    copy: no
   when: not godir.stat.exists
 
 - name: Add symlinks from /usr/local/go/bin to /usr/bin
-  file: src=/usr/local/go/bin/{{ item }} dest=/usr/bin/{{ item }} state=link
+  file:
+    src: "/usr/local/go/bin/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    mode: '0755'
+    state: link
   with_items:
     - go
     - gofmt

@@ -3,10 +3,6 @@
 sudo: required
 
 env:
-#  - distribution: centos
-#    version: 6
-#    init: /sbin/init
-#    run_opts: ""
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
@@ -23,17 +19,6 @@ env:
     version: 14.04
     init: /sbin/init
     run_opts: ""
-#  - distribution: ubuntu
-#    version: 12.04
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: alpine
-#    version: 3.4
-#    init: /sbin/init
-#    run_opts: ""
-#  - distro: debian8
-#    init: /lib/systemd/systemd
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 services:
   - docker
@@ -52,7 +37,7 @@ before_install:
 
 script:
   - container_id=$(mktemp)
-    # Run container in detached state
+  # Run container in detached state
   - 'sudo docker run --detach --volume="${PWD%/*}":/etc/ansible/roles:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
 
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version'
@@ -72,8 +57,8 @@ script:
     || (echo 'Idempotence test: fail' && cat /tmp/idempotency.log && exit 1)
 
   # serverspec tests
-## travis/docker: Errno::EROFS: Read-only file system @ dir_s_mkdir - /etc/ansible/roles/juju4.golang/test/integration/default/serverspec/.bundle
-#  - 'sudo docker exec --tty "$(cat ${container_id})" /etc/ansible/roles/juju4.golang/test/integration/default/serverspec/run-local-tests.sh'
+  ## travis/docker: Errno::EROFS: Read-only file system @ dir_s_mkdir - /etc/ansible/roles/juju4.golang/test/integration/default/serverspec/.bundle
+  # - 'sudo docker exec --tty "$(cat ${container_id})" /etc/ansible/roles/juju4.golang/test/integration/default/serverspec/run-local-tests.sh'
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'

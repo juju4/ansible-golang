@@ -19,14 +19,6 @@
       assert:
         that: bin2.stat.exists and bin2.stat.size != 0 and bin2.stat.mode == '0755'
 
-    - name: Ensure /usr/bin/godoc is present
-      stat:
-        path: /usr/bin/godoc
-      register: bin3
-    - name: Validate /usr/bin/godoc present
-      assert:
-        that: bin3.stat.exists and bin3.stat.size != 0 and bin3.stat.mode == '0755'
-
     - name: Validate command runs
       command: go version
       changed_when: false
