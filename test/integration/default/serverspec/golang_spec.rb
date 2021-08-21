@@ -17,4 +17,3 @@ describe command('go version') do
   its(:stdout) { should match /go version/ }
   its(:exit_status) { should eq 0 }
 end
-
