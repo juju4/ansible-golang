@@ -4,26 +4,26 @@
   hosts: golang
   tasks:
     - name: Ensure /usr/bin/go is present
-      stat:
+      ansible.builtin.stat:
         path: /usr/bin/go
       register: bin1
     - name: Validate /usr/bin/go present
-      assert:
+      ansible.builtin.assert:
         that: bin1.stat.exists and bin1.stat.size != 0 and bin1.stat.mode == '0777'
 
     - name: Ensure /usr/bin/gofmt is present
-      stat:
+      ansible.builtin.stat:
         path: /usr/bin/gofmt
       register: bin2
     - name: Validate /usr/bin/gofmt present
-      assert:
+      ansible.builtin.assert:
         that: bin2.stat.exists and bin2.stat.size != 0 and bin2.stat.mode == '0777'
 
     - name: Validate command runs
-      command: go version
+      ansible.builtin.command: go version
       changed_when: false
       register: ver
     - name: Validate go version
-      assert:
+      ansible.builtin.assert:
         that: >
           "'go version' in ver.stdout and ver.rc == 0"

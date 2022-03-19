@@ -4,33 +4,33 @@
 ## recent golang?
 ## alternative? https://launchpad.net/~evarlast/+archive/ubuntu/golang1.4
 - name: Set fact for arch i386
-  set_fact:
+  ansible.builtin.set_fact:
     architecture: 386
     golang_hash: "{{ golang_hash_linux_386 }}"
   when: ansible_architecture == 'i386'
 - name: Set fact for arch x86_64
-  set_fact:
+  ansible.builtin.set_fact:
     architecture: amd64
     golang_hash: "{{ golang_hash_linux_amd64 }}"
   when: ansible_architecture == 'x86_64'
 - name: Set fact for Linux
-  set_fact:
+  ansible.builtin.set_fact:
     go_url: "https://storage.googleapis.com/golang/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz"
     go_dest: "/usr/local/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz"
   when: ansible_system == 'Linux'
 
 - name: Check if golang archive is present
-  stat: path=/usr/local/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz
+  ansible.builtin.stat: path=/usr/local/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz
   register: goarchive
 - name: download recent golang
-  get_url: "url={{ go_url }} dest={{ go_dest }} mode=0440 checksum={{ golang_hash }}"
+  ansible.builtin.get_url: "url={{ go_url }} dest={{ go_dest }} mode=0440 checksum={{ golang_hash }}"
 
   when: not goarchive.stat.exists
 - name: Check if go binary is present
-  stat: path=/usr/local/go
+  ansible.builtin.stat: path=/usr/local/go
   register: godir
 - name: Extract go archive to /usr/local
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ go_dest }}"
     dest: /usr/local/
     mode: '0755'
@@ -38,7 +38,7 @@
   when: not godir.stat.exists
 
 - name: Add symlinks from /usr/local/go/bin to /usr/bin
-  file:
+  ansible.builtin.file:
     src: "/usr/local/go/bin/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     mode: '0755'
