@@ -22,7 +22,7 @@
 - name: Check if golang archive is present
   ansible.builtin.stat: path=/usr/local/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz
   register: goarchive
-- name: download recent golang
+- name: Download recent golang
   ansible.builtin.get_url: "url={{ go_url }} dest={{ go_dest }} mode=0440 checksum={{ golang_hash }}"
 
   when: not goarchive.stat.exists
