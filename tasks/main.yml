@@ -7,4 +7,5 @@
 #   include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
 #   when: ansible_distribution == 'Ubuntu'
 
-- import_tasks: golang.yml
+- name: Import golang
+  ansible.builtin.import_tasks: golang.yml
