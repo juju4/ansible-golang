@@ -6,12 +6,12 @@
 - name: Set fact for arch i386
   ansible.builtin.set_fact:
     architecture: 386
-    golang_hash: "{{ golang_hash_linux_386 }}"
+    golang_hash: "{{ golang_hash_linux_386 | default(omit) }}"
   when: ansible_architecture == 'i386'
 - name: Set fact for arch x86_64
   ansible.builtin.set_fact:
     architecture: amd64
-    golang_hash: "{{ golang_hash_linux_amd64 }}"
+    golang_hash: "{{ golang_hash_linux_amd64 | default(omit) }}"
   when: ansible_architecture == 'x86_64'
 - name: Set fact for Linux
   ansible.builtin.set_fact:
@@ -28,7 +28,7 @@
     url: "{{ go_url }}"
     dest: "{{ go_dest }}"
     mode: "0440"
-    checksum: "{{ golang_hash }}"
+    checksum: "{{ golang_hash | default(omit) }}"
 
   when: not goarchive.stat.exists
 - name: Check if go binary is present
