@@ -25,5 +25,6 @@
       register: ver
     - name: Validate go version
       ansible.builtin.assert:
-        that: >
-          "'go version' in ver.stdout and ver.rc == 0"
+        that:
+          - "'go version' in ver.stdout"
+          - ver.rc == 0
