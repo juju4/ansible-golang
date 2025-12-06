@@ -15,7 +15,7 @@
   when: ansible_architecture == 'x86_64'
 - name: Set fact for Linux
   ansible.builtin.set_fact:
-    go_url: "https://storage.googleapis.com/golang/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz"
+    go_url: "https://go.dev/dl/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz"
     go_dest: "/usr/local/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz"
   when: ansible_system == 'Linux'
 
