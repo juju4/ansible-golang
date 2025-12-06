@@ -1,6 +1,6 @@
 ---
 
 # renovate: datasource=golang-version
-golang_gover: '1.25.0'
+golang_gover: '1.25.5'
 # golang_hash_linux_386: 'sha256:8c602dd9d99bc9453b3995d20ce4baf382cc50855900a0ece5de9929df4a993a'
 # golang_hash_linux_amd64: 'sha256:2852af0cb20a13139b3448992e69b868e50ed0f8a1e5940ee1de9e19a123b613'
