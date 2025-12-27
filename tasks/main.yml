@@ -1,11 +1,11 @@
 ---
 
 # - fail: msg="This role is only compatible with Ubuntu"
-#   when: ansible_distribution != 'Ubuntu'
+#   when: ansible_facts['distribution'] != 'Ubuntu'
 
 # - name: Include version-specific variables for Ubuntu.
-#   include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
-#   when: ansible_distribution == 'Ubuntu'
+#   include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_version'] }}.yml"
+#   when: ansible_facts['distribution'] == 'Ubuntu'
 
 - name: Import golang
   ansible.builtin.import_tasks: golang.yml

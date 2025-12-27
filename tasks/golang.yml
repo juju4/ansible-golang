@@ -7,17 +7,17 @@
   ansible.builtin.set_fact:
     architecture: 386
     golang_hash: "{{ golang_hash_linux_386 | default(omit) }}"
-  when: ansible_architecture == 'i386'
+  when: ansible_facts['architecture'] == 'i386'
 - name: Set fact for arch x86_64
   ansible.builtin.set_fact:
     architecture: amd64
     golang_hash: "{{ golang_hash_linux_amd64 | default(omit) }}"
-  when: ansible_architecture == 'x86_64'
+  when: ansible_facts['architecture'] == 'x86_64'
 - name: Set fact for Linux
   ansible.builtin.set_fact:
     go_url: "https://go.dev/dl/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz"
     go_dest: "/usr/local/go{{ golang_gover }}.linux-{{ architecture }}.tar.gz"
-  when: ansible_system == 'Linux'
+  when: ansible_facts['system'] == 'Linux'
 
 - name: Check if golang archive is present
   ansible.builtin.stat:
